@@ -1,20 +1,11 @@
-const modalOverlay = document.querySelector('.modal-overlay');
+/* const modalOverlay = document.querySelector('.modal-overlay'); */
 const cards = document.querySelectorAll('.card')
-console.log("funcionou");
-
+console.log(cards);
 for (const card of cards) {
     card.addEventListener('click', function () {
      const videoId = card.getAttribute("id")
-     modalOverlay.classList.add('active')
-     modalOverlay.querySelector('iframe').src = `https://www.youtube.com/embed/${videoId}`  
+     window.location.href = `/video?id=${videoId}`
     })
-    
-    console.log(card);
 }
 
-const closeModal = document.querySelector('.close-modal');
 
-closeModal.addEventListener('click', function () {
-        modalOverlay.classList.remove('active')
-        modalOverlay.querySelector('iframe').src = ""  
-    })

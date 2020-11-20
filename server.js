@@ -4,20 +4,19 @@ const nunjucks = require('nunjucks')
 const server = express()
 const videos = require("./data")
 
-console.log(videos);
-
 server.use(express.static('public'))
-
+server.use(express.json())
 server.set("view engine", "njk")
 
 nunjucks.configure("view", {
     express:server,
-    autoescape: false
+    autoescape: false,
+    noCache: true
 })
 
 server.get("/", function(request, response){
     const about = {
-        avatar_url: 'https://nextlevelweek.com/_next/static/images/mayk-96fb5b73e58e32ff657bcadd02b64308.png" alt="Mayk Brito"',
+        avatar_url: 'https://yt3.ggpht.com/a/AATXAJwycVEsEOTXaNg2EqQmRGfmvvuwKo5tmxuvtb53ViA=s900-c-k-c0x00ffffff-no-rj" alt="Mayk Brito"',
         name: "Mayk Brito",
         role: "Instrutor - Rocketseat",
         description: 'Programador full-stack, focado em trazer o melhor ensino para inciantes em programação. Colaborador da <a href="https://rocketseat.com.br/" target="_blank">Rocketseat</a></p>',
@@ -32,16 +31,22 @@ server.get("/", function(request, response){
     return response.render("about", {about})
 })
 
-server.get("/about", function(request, response){
-    
-})
-
-
 server.get("/portfolio", function(request, response){
     return response.render("portfolio", {items: videos})
 })
 
+server.get("/video", function(request, response){
+    const id = request.query.id
+
+    const video = videos.find((video) => video.id === id)
+
+    if(!video){
+        return response.send("video not found")
+    }
+    return response.render("video", { item: video })
+})
 
 server.listen(5000, function() {
     console.log("Server is running");
 })
+
