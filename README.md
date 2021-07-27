@@ -1,5 +1,5 @@
 # Portfólio professor Mayk Brito
 
-Esse site, foi colocado como projeto no curso Launch Base da RocketSeat, ministrado pelo professor Mayk Brito, nesse projeto desenvolvi uma página em que se pode visualizar o portfólio do professor.
+This site was placed as a project in the RocketSeat Launch Base course, taught by professor Mayk Brito, in this project I developed a page where you can view the professor's portfolio.
 
-Foi utilizado HTML, CSS e JavaScript.
+HTML, CSS and JavaScript were used.
